@@ -1,0 +1,28 @@
+<%= form_for @post do |f| %>
+  <% if @post.errors.any? %>
+    <div id="errorExplanation">
+      <h4 style="color: rgb(200,10,10)"><%= pluralize(@post.errors.count, "error") %> prohibited
+      this post from being saved:</h4>
+      <ul>
+        <% @post.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <p>
+  <%= f.label :title %><br>
+  <%= f.text_field :title, :placeholder => "title" %>
+  </p>
+
+  <p>
+  <%= f.label :whitetext %><br>
+  <%= f.text_area :whitetext, :placeholder => "your good side" %>
+  </p>
+
+  <p>
+  <%= f.label :blacktext %><br>
+  <%= f.text_area :blacktext, :placeholder => "your bad side" %>
+  </p>
+  <%= f.submit %>
+<% end %>

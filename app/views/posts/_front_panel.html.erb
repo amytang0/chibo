@@ -1,0 +1,25 @@
+<% @posts.each do |post| %>
+  <div class="row confession"> 
+    <div class="col-1">          
+      <div class="btn-group-vertical vote-buttons">
+        <button type="button" class="btn btn-default btn-small"><span class="glyphicon glyphicon-arrow-up"></span><i class="icon-white icon-arrow-up"></i></button>
+        <button type="button" class="btn btn-default btn-small vote-count">262</button>
+        <button type="button" class="btn btn-default btn-small"><span class="glyphicon glyphicon-arrow-down"></span></button>
+      </div><!--/.btn-group-vertical-->
+    </div><!--/.col-1-->
+    <div class="col-11">
+      <div class="panel front-page-panel hover-panel">
+        <div class="panel-heading">
+          <span class="badge pull-right"><a class="comments-link" href="posts/<%= post.id %>#comments"><%= post.comments.count %> comments</a></span>
+          <a class="panel-title" href="posts/<%= post.id %>"><h4 style="margin:0"><%= post.title %></h4></a>
+        </div>
+        <div class="white-panel">
+          <%= post.whitetext %>
+        </div>
+        <div class="black-panel" style="display:none; color: #fff;">
+          <%= post.blacktext %>
+        </div>
+      </div><!--/.panel-->
+    </div><!--col-11-->
+  </div><!--confession-->
+<% end %>

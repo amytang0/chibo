@@ -1,0 +1,25 @@
+<div class="single-confession">
+<div class="panel">
+    <div class="white-panel">
+      <%= @post.whitetext %>
+    </div>
+  </div><!--/.panel-->
+  <div class="panel black-panel" style="background-color:rgb(41,43,43);color: #fff;">
+    <%= @post.blacktext %>
+  </div><!--/.black-panel-->
+  <div class="btn-group" >
+    <button type="button" class="btn btn-default"> <span class="glyphicon glyphicon-arrow-up"></span></button>
+    <button type="button" class="btn btn-default">262</button>
+    <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-arrow-down"></span></button>
+    <% if can? :edit, @post %>
+      <button type="button" class="btn btn-default">
+        <%= link_to "edit", edit_post_path(@post) %>
+      </button>
+    <% end %>
+    <% if can? :destroy, @post %>
+      <button type="button" class="btn btn-default">
+      <%= link_to "delete", post_path(@post), :method => :delete,
+      data: { confirm: 'Are you sure?' } %></button>
+    <% end %>
+  </div><!--/.btn-group-->
+</div><!--/.single-confession-->
