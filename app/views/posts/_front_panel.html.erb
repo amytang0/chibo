@@ -2,9 +2,18 @@
   <div class="row confession"> 
     <div class="col-1">          
       <div class="btn-group-vertical vote-buttons">
-        <button type="button" class="btn btn-default btn-small"><span class="glyphicon glyphicon-arrow-up"></span><i class="icon-white icon-arrow-up"></i></button>
-        <button type="button" class="btn btn-default btn-small vote-count">262</button>
-        <button type="button" class="btn btn-default btn-small"><span class="glyphicon glyphicon-arrow-down"></span></button>
+        <button type="button" class="btn btn-default btn-small">
+          <%= link_to('up', vote_up_post_path(post), :method => :post) %>
+<%= post.id %>
+          </button>
+        <button type="button" class="btn btn-default btn-small vote-count">
+          <%= render :partial => "votecount", :locals => {:post => post} %>
+        </button>
+        <button type="button" class="btn btn-default btn-small">
+          <%= link_to('down', vote_down_post_path(post), :method => :post) %>
+          <%= post.voters_who_voted %>
+        </button>
+
       </div><!--/.btn-group-vertical-->
     </div><!--/.col-1-->
     <div class="col-11">

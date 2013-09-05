@@ -3,6 +3,10 @@ Twofaced::Application.routes.draw do
   root :to => 'posts#index'
 
   resources :posts do
+    member do
+      post :vote_up
+      post :vote_down
+    end
     resources:comments
   end
   resources :users

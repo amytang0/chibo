@@ -1,5 +1,10 @@
   $(document).ready(function(){
 
+  $.post('/posts/' + id + '/vote_up', function() {
+      alert('success');
+      })
+  .error(function() { alert('Vote error.'); });
+
   $(".hover-panel").hover(function(){
     var white = $(this).find(".white-panel");
     var black = $(this).find(".black-panel");

@@ -47,6 +47,29 @@ class PostsController < ApplicationController
     end
   end
 
+  def vote_up
+
+    begin
+      current_user.vote_exclusively_for(@post = Post.find(params[:id]))
+      render :partial => 'votecount'
+      flash[:success] = "You have voted successfully"
+    rescue ActiveRecord::RecordInvalid
+      flash[:error] = "You have already voted"
+      render :nothing => true, :status => 404
+    end
+  end
+
+  def vote_down
+    begin
+      current_user.vote_exclusively_against(@post = Post.find(params[:id]))
+      render :partial => 'votecount'
+    rescue ActiveRecord::RecordInvalid
+      render :nothing => true, :status => 404
+    end
+  end
+
+
+
   private
     def post_params
       params.require(:post).permit(:title, :whitetext, :blacktext)

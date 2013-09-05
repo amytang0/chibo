@@ -11,6 +11,8 @@ class Ability
     else
       can :read, :all
       can :create, [Post, Comment]
+      can :vote_up, [Post, Comment]
+      can :vote_down, [Post, Comment]
       can [:update, :destroy], Post do |post|
         post.try(:user) == user
       end

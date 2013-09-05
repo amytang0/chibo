@@ -3,15 +3,6 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0'
 
-# Use Devise
-gem 'devise', '~> 3.0.0.rc'
-
-# Use CanCan for authorization of users
-gem 'cancan'
-
-# Use make_voteable for upvote/downvote system
-#gem 'make_voteable'
-
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 
@@ -49,6 +40,18 @@ end
 
 # Use Capistrano for deployment
 # gem 'capistrano', group: :development
+
+
+
+# Use Devise
+gem 'devise', '~> 3.0.0.rc'
+
+# Use CanCan for authorization of users
+gem 'cancan'
+
+# Use make_voteable for upvote/downvote system
+#gem 'make_voteable'
+gem 'thumbs_up'
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
