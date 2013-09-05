@@ -1,9 +1,4 @@
-  $(document).ready(function(){
-
-  $.post('/posts/' + id + '/vote_up', function() {
-      alert('success');
-      })
-  .error(function() { alert('Vote error.'); });
+$(document).ready(function(){
 
   $(".hover-panel").hover(function(){
     var white = $(this).find(".white-panel");
@@ -18,4 +13,4 @@
     black.fadeOut(0);
     white.fadeIn(0);
     });
-  });
+});

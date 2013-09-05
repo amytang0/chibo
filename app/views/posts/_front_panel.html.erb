@@ -2,18 +2,7 @@
   <div class="row confession"> 
     <div class="col-1">          
       <div class="btn-group-vertical vote-buttons">
-        <button type="button" class="btn btn-default btn-small">
-          <%= link_to('up', vote_up_post_path(post), :method => :post) %>
-<%= post.id %>
-          </button>
-        <button type="button" class="btn btn-default btn-small vote-count">
-          <%= render :partial => "votecount", :locals => {:post => post} %>
-        </button>
-        <button type="button" class="btn btn-default btn-small">
-          <%= link_to('down', vote_down_post_path(post), :method => :post) %>
-          <%= post.voters_who_voted %>
-        </button>
-
+    <%= render :partial => "vote_buttons", locals: {:post => post} %> 
       </div><!--/.btn-group-vertical-->
     </div><!--/.col-1-->
     <div class="col-11">

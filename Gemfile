@@ -41,7 +41,8 @@ end
 # Use Capistrano for deployment
 # gem 'capistrano', group: :development
 
-
+# Use Font-Awesome for icons
+gem "font-awesome-rails", "~> 3.2.1.3"
 
 # Use Devise
 gem 'devise', '~> 3.0.0.rc'

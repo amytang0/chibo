@@ -8,7 +8,7 @@
     <%= @post.blacktext %>
   </div><!--/.black-panel-->
   <div class="btn-group" >
-  <%= render 'vote_buttons', :locals => {:post => @post} %>
+  <%= render partial: 'vote_buttons', :locals => {:post => @post} %>
   <% if can? :edit, @post %>
       <button type="button" class="btn btn-default">
         <%= link_to "edit", edit_post_path(@post) %>

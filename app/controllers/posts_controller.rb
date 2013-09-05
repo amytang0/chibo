@@ -51,7 +51,8 @@ class PostsController < ApplicationController
 
     begin
       current_user.vote_exclusively_for(@post = Post.find(params[:id]))
-      render :partial => 'votecount'
+      Rails.logger.info "Voted up"
+      render partial: 'votecount', locals: {post: @post} 
       flash[:success] = "You have voted successfully"
     rescue ActiveRecord::RecordInvalid
       flash[:error] = "You have already voted"
@@ -62,7 +63,7 @@ class PostsController < ApplicationController
   def vote_down
     begin
       current_user.vote_exclusively_against(@post = Post.find(params[:id]))
-      render :partial => 'votecount'
+      render partial: 'votecount', locals: {post: @post} 
     rescue ActiveRecord::RecordInvalid
       render :nothing => true, :status => 404
     end
