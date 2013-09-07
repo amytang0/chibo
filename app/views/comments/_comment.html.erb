@@ -2,14 +2,11 @@
   <%= comment.id %>:
   <%= comment.post_id %>th post 
   <%= comment.body %>
-      <%= button_to "delete",
-          [comment.post, comment],
-          method: :delete,
-          data: {confirm: "Are you sure?"} %>
-
-  <% if can? :destroy, @comment %>
-    <button type="button" class="btn btn-default">
-      <%= link_to "delete", post_comments(comment), :method => :delete, :confirm => "Are you sure?"%>
-    </button>
-  <% end %>
+  <div class="btn-group">
+    <% if can? :destroy, comment %>
+      <button type="button" class="btn btn-small">
+        <%= link_to "delete", post_comment_path(comment.post_id, comment.id), :method => :delete, data: {confirm: 'Are you sure?'} %>
+      </button>
+    <% end %>
+  </div><!--/.btn-group-->
 </div><!--/.panel-->
