@@ -50,9 +50,11 @@ gem 'devise', '~> 3.0.0.rc'
 # Use CanCan for authorization of users
 gem 'cancan'
 
-# Use make_voteable for upvote/downvote system
-#gem 'make_voteable'
+# Use thumbs_up for upvote/downvote system
 gem 'thumbs_up'
+
+# Use Kaminari for pagination
+gem 'kaminari'
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]

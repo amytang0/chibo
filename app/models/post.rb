@@ -8,4 +8,9 @@ class Post < ActiveRecord::Base
   validates :title, presence: true, length: {maximum: 32}
   validates :whitetext, presence: true, length: {maximum: 140}
   validates :blacktext, presence: true, length: {maximum: 140}
+
+  def self.per_page
+    25
+  end
+  
 end

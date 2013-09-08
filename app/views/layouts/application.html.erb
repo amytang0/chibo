@@ -1,8 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <title>2faced</title>
   <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="The best and the worst of you">
+  <meta name="author" content="">
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "votecount" %>
   <%= csrf_meta_tags %>
@@ -11,6 +15,7 @@
 
 </head>
 <body>
+<%= render 'layouts/navbar' %>
 
 <%= yield %>
 

@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, :except => [:show, :index]
+  skip_before_filter :verify_authenticity_token, :only => [:vote_up, :vote_down]
   load_and_authorize_resource :except => :create
 
   def new
@@ -12,7 +13,8 @@ class PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.all
+#    @posts = Post.all
+    @posts = Post.order("created_at").page(params[:page]).per(1)
   end
 
   def destroy

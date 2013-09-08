@@ -1,4 +1,8 @@
 /* Add additional stylesheets below -------------------------------------------------- */
+
+/* Button Styling */
+/* Links in buttons are white 
+   & have bigger clickable areas */
 .btn a {
   color: #fff;
   display: block;
@@ -6,10 +10,10 @@
   padding: 10px;
   text-decoration: none;
 }
-.loading {
-  margin-top: 45px;
-}
 
+/* Front Page Panel Styling */
+
+/* White front-page panel */
 .front-page-panel {
   background-color: #fff;
   -webkit-transition: background-color 0.4s ease;
@@ -18,6 +22,7 @@
   transition: background-color 0.4s ease;
 }
 
+/* Turns slowly black on hover */
 .front-page-panel:hover {
   background-color: rgb(41,43,43);
 }
@@ -40,6 +45,7 @@
   padding: 0;
 }
 
+/* ???? May remove later */
 .submit-confession {
   padding-top: 20px;
 }
@@ -54,11 +60,14 @@
   margin-top: 10px;
   margin-bottom: 10px;
 }
+/* End remove later ??? */
 
+/* Don't allow resizing of textboxes */
 textarea {
   resize: none;
 }
 
+/* Show single confession styling */
 .single-confession .panel{
   margin-bottom: 0;
 }
