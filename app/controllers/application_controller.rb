@@ -34,7 +34,8 @@ class ApplicationController < ActionController::Base
   # CanCan accessdenied handling
   rescue_from CanCan::AccessDenied do |exception|
     Rails.logger.warn "debug:: Cancan access denied!"
-    flash[:error] = exception.message
+    #flash[:error] = exception.message
+    flash[:error] = "Must sign in"
     redirect_to root_url
   end
 

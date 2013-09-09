@@ -14,7 +14,7 @@ class PostsController < ApplicationController
 
   def index
 #    @posts = Post.all
-    @posts = Post.order("created_at").page(params[:page]).per(1)
+    @posts = Post.plusminus_tally.page(params[:page]).per(2)
   end
 
   def destroy
