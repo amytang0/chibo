@@ -1,0 +1,14 @@
+<button type="button" class="btn btn-default" name="vote_up">
+  <a href="" class="ratelink" updown="up" theid="<%= post.id %>">
+    <i class="icon-arrow-up"></i>
+  </a>
+</button>
+<button type="button" class="btn btn-default vote-count" name="vote_count">
+  <%= render :partial => "votecount", :locals => {:post => post} %>
+</button>
+<button type="button" class="btn btn-default" name="vote_down">
+  <a href="" class="ratelink" updown="down" theid="<%= post.id %>">
+     <i class="icon-arrow-down"></i>
+  </a>
+</button>
+
