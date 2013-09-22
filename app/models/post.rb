@@ -9,8 +9,8 @@ class Post < ActiveRecord::Base
   validates :whitetext, presence: true, length: {maximum: 140}
   validates :blacktext, presence: true, length: {maximum: 140}
 
-  def self.per_page
-    25
-  end
-  
+  scope :one_day_ago, lambda { where("created_at >= :date", :date => 1.days.ago) }
+  scope :one_week_ago, lambda { where("created_at >= :date", :date => 1.weeks.ago) }
+  scope :one_month_ago, lambda { where("created_at >= :date", :date => 1.months.ago) }
+
 end

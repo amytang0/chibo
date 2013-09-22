@@ -11,6 +11,10 @@ $(function(){
         url: "/posts/"+theid+"/vote_up",
         success: function(){
           console.log("vote up");
+        },
+        error: function(request, status, error) {
+          console.log("failed vote up");
+          window.location.href = "/users/sign_in";
         }
       });
       } else {
@@ -19,8 +23,13 @@ $(function(){
           url: "/posts/"+theid+"/vote_down",
           success: function(){
             console.log("vote down");
-        }   
-      });
+        },   
+          error: function() {
+          console.log("failed vote down");
+           window.location.href = "/users/sign_in";
+
+        }
+    });
     }
 })
 

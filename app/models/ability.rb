@@ -5,18 +5,22 @@ class Ability
 # Define abilities for the passed in user here. For example:
 
     user ||= User.new # guest user (not logged in)
-#    Rails.logger.info "debug:: "+ user.role
-    if user.role == "admin"
-      can :manage, :all
-    elseif user.role == "banned"
+#    user ||= ApplicationController.new.current_user
+    Rails.logger.info "debug:: "+ user.inspect
+    if user.nil?
       can :read, :all
-    else
+    elsif user.role == "admin"
+      can :manage, :all
+    elsif user.role == "banned"
+      can :read, :all
+    elsif user.role == "default"
       can :read, :all
       can :vote_up, :all
       can :vote_down, :all
       can :manage, Post, :user_id => user.id
       can :manage, Comment, :user_id => user.id
-   
+    else
+      can :read, :all
 #      can :create, [Post, Comment]
 #      can :vote_up, [Post, Comment]
 #      can :vote_down, [Post, Comment]

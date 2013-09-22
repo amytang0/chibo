@@ -12,18 +12,18 @@ class User < ActiveRecord::Base
 
   has_many :posts
   has_many :comments
-#  has_and_belongs_to_many :roles
 
   ROLES = %w[admin default banned]
 
 # Stored role names as CamelCase, but access with underscores
-  def role?(role)
-      return !!self.roles.find_by_name(role.to_s.camelize)
-  end
+#  def role?(role)
+#      return !!self.roles.find_by_name(role.to_s.camelize)
+#  end
 
   private
 
   def setup_default_role_for_new_users
+    Rails.logger.info "debug:: Setting up default role"  
     if self.role.blank?
       self.role = "default"
     end

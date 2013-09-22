@@ -5,62 +5,27 @@ class ApplicationController < ActionController::Base
   before_filter :authenticate_user!, :except => [:show, :index]
   skip_before_filter :verify_authenticity_token, :only => [:vote_up, :vote_down] 
 
-  helper_method :current_or_guest_user
-  # if user is logged in, return current_user, else return guest_user
-  def current_or_guest_user
-    if current_user
-      if session[:guest_user_id]
-        logging_in
-        guest_user.destroy
-        session[:guest_user_id] = nil
-      end
-      current_user
-    else
-    guest_user
+  class ApplicationController < ActionController::Base
+    rescue_from CanCan::AccessDenied do |exception|
+        redirect_to main_app.root_url, :alert => exception.message
     end
   end
 
-  # find guest_user object associated with the current session,
-  # creating one as needed
-  def guest_user
-    # Cache the value the first time it's gotten.
-    @cached_guest_user ||= User.find(session[:guest_user_id] ||= create_guest_user.id)
+  helper_method :current_user
 
-    rescue ActiveRecord::RecordNotFound # if session[:guest_user_id] invalid
-    session[:guest_user_id] = nil
-    guest_user
-  end
-
-  # CanCan accessdenied handling
-  rescue_from CanCan::AccessDenied do |exception|
-    Rails.logger.warn "debug:: Cancan access denied!"
-    #flash[:error] = exception.message
-    flash[:error] = "Must sign in"
-    redirect_to root_url
+  def current_user
+    super || guest_user
   end
 
   private
 
-  # called (once) when the user logs in, insert any code your application needs
-  # to hand off from guest_user to current_user.
-  def logging_in
-    guest_comments = guest_user.comments.all
-    guest_comments.each do |comment|
-      comment.user_id = current_user.id
-      comment.save!
-    end
-    guest_posts = guest_user.posts.all
-    guest_posts.each do |post|
-      post.user_id = current_user.id
-      post.save!
-    end
-
+  def guest_user
+#User.find(session[:guest_user_id].nil? ? session[:guest_user_id] = create_guest_user.id : session[:guest_user_id])
   end
 
   def create_guest_user
-    u = User.create(:email => "guest_#{Time.now.to_i}#{rand(99)}@example.com")
+    u = User.create(:email => "guest_#{Time.now.to_i}#{rand(99)}")
     u.save!(:validate => false)
-    session[:guest_user_id] = u.id
     u
   end
 

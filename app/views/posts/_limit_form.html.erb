@@ -1,0 +1,9 @@
+<div>
+  <div class="pull-left" style="line-height:35px">Posts per page:</div>
+  <div class="col-2">
+  <%= form_tag posts_path, method: :get, id: 'limit_form', remote: false do %> 
+    <%= select_tag :limit, options_for_select([5, 10, 15, 20], :selected => params[:limit] || 10) %> 
+    <% end %>
+  </div><!--/.col-2-->
+</div> 
+

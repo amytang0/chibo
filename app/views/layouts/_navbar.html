@@ -11,15 +11,16 @@
       <div class="nav-collapse">
       <ul class="nav navbar-nav">
         <li><a href="/posts/new">Submit Post</a></li>
-        <li><a href="/posts#recent">Recent</a></li>
+        <li><%= link_to "Recent", posts_path(:time => "recent") %></li>  
         <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">  
             Best <span class="caret"></span>
           </a>
           <ul class="dropdown-menu">
-            <li><a href="/posts#today">Today</a></li>
-            <li><a href="/posts#monthly">Monthly</a></li>
-            <li><a href="/posts#alltime">All Time</a></li>
+            <li><%= link_to "Today", posts_path(:time => "today") %></li>  
+            <li><%= link_to "Weekly", posts_path(:time => "weekly") %></li>  
+            <li><%= link_to "Monthly", posts_path(:time => "monthly") %></li>  
+            <li><%= link_to "All Time", posts_path(:time => "all-time") %></li>  
           </ul>
         </li>
 

@@ -13,8 +13,34 @@ class PostsController < ApplicationController
   end
 
   def index
+  Rails.logger.info("debug: " + current_user.inspect)
 #    @posts = Post.all
-    @posts = Post.plusminus_tally.page(params[:page]).per(2)
+# add the whole month/day/alltime thing
+    if params[:time]
+      Rails.logger.info("time variable exists")
+      case params[:time]
+      when "today"
+        @posts = Kaminari.paginate_array(Post.one_day_ago.sort_by{ |post| post.plusminus}.reverse).page(params[:page]).per(10)
+        Rails.logger.info("day set");
+      when "weekly"
+       Rails.logger.info("week set");
+       @posts = Kaminari.paginate_array(Post.one_week_ago.sort_by{ |post| post.plusminus}.reverse).page(params[:page]).per(10)
+      when "monthly"
+        Rails.logger.info("month set");
+        @posts = Kaminari.paginate_array(Post.one_month_ago.sort_by{ |post| post.plusminus}.reverse).page(params[:page]).per(10)
+      when "all-time"
+        Rails.logger.info("all time set");
+        @posts = Post.plusminus_tally.page(params[:page]).per(10)
+      when "recent"
+       @posts = Kaminari.paginate_array(Post.all.reverse).page(params[:page]).per(10)    
+      else
+        @posts = Kaminari.paginate_array(Post.all.sort_by{ |post| post.created_at}.reverse).page(params[:page]).per(10)
+    Rails.logger.info("No time set")
+      end 
+   else
+    @posts = Kaminari.paginate_array(Post.all.reverse).page(params[:page]).per(10)
+#     @posts = Post.plusminus_tally.page(params[:page]).per(10)
+    end
   end
 
   def destroy
@@ -50,9 +76,13 @@ class PostsController < ApplicationController
   end
 
   def vote_up
-
     begin
-      current_user.vote_exclusively_for(@post = Post.find(params[:id]))
+       Rails.logger.info "\n \n blhhh"+ current_user.inspect+" VOyte \n \n "
+
+    if current_user.nil?
+      Rails.logger.info "\n \n VOyte \n \n "
+    end
+     current_user.vote_exclusively_for(@post = Post.find(params[:id]))
       Rails.logger.info "Voted up"
       render partial: 'votecount', locals: {post: @post} 
       flash[:success] = "You have voted successfully"

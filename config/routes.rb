@@ -1,6 +1,6 @@
 Twofaced::Application.routes.draw do
   devise_for :users
-  root :to => 'posts#index'
+  root :to => 'posts#index', :time => 'day'
 
   resources :posts do
     member do

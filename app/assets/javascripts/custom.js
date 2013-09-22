@@ -1,5 +1,13 @@
 $(document).ready(function(){
 
+
+  $(document).on( 'change', '#limit',
+    function() {
+      console.log("limit form submitted");
+      $('#limit_form').submit();
+  });
+
+
   $(".hover-panel").hover(function(){
     var white = $(this).find(".white-panel");
     var black = $(this).find(".black-panel");

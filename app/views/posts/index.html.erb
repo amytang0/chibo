@@ -4,12 +4,16 @@
 
   <div class="loading"> 
 
-<h1>Today</h1>
+<h1>
+  <% if params[:time] != "recent" %>best posts: <% end %><%= params[:time] %>
+</h1>
       <div class="col-12 col-sm-12 col-lg-12">
       <%= render 'front_panel' %>
 
+
   <%= paginate @posts %>
-      </div><!--/.col-10-->
+
+    </div><!--/.col-12-->
 
   </div><!--/.loading-->
 
