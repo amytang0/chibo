@@ -4,9 +4,9 @@
 
   <div class="loading"> 
 
-<h1>
-  <% if params[:time] != "recent" %>best posts: <% end %><%= params[:time] %>
-</h1>
+<h3>
+  <% if params[:time] != "recent" && !params[:time].nil? %>best posts: <% end %><%= params[:time] %>
+</h3>
       <div class="col-12 col-sm-12 col-lg-12">
       <%= render 'front_panel' %>
 
