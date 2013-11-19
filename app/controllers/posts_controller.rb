@@ -53,7 +53,7 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new(params[:post].permit(:title, :whitetext, :blacktext))
+    @post = Post.new(params[:post].permit(:title, :location, :adtext ))
     @post.user = current_user
     if @post.save
       redirect_to @post
@@ -68,7 +68,7 @@ class PostsController < ApplicationController
 
   def update
     @post = Post.find(params[:id])
-    if @post.update(params[:post].permit(:title, :whitetext, :blacktext))
+    if @post.update(params[:post].permit(:title, :location, :adtext))
       redirect_to @post
     else
       render 'edit'
@@ -105,7 +105,7 @@ class PostsController < ApplicationController
 
   private
     def post_params
-      params.require(:post).permit(:title, :whitetext, :blacktext)
+      params.require(:post).permit(:title, :location, :adtext)
     end
 
 end

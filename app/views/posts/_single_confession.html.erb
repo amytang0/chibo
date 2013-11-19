@@ -1,11 +1,11 @@
 <div class="single-confession">
 <div class="panel">
     <div class="white-panel">
-      <%= @post.whitetext %>
+      Location: <%= @post.location %>
     </div>
   </div><!--/.panel-->
-  <div class="panel black-panel" style="background-color:rgb(41,43,43);color: #fff;">
-    <%= @post.blacktext %>
+  <div class="panel white-panel"> 
+      More Info: <%= @post.adtext %>
   </div><!--/.black-panel-->
   <div class="btn-group" >
   <%= render partial: 'vote_buttons', :locals => {:post => @post} %>

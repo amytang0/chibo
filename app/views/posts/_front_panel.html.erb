@@ -8,14 +8,14 @@
     <div class="col-11">
       <div class="panel front-page-panel hover-panel">
         <div class="panel-heading">
-          <span class="badge pull-right"><a class="comments-link" href="posts/<%= post.id %>#comments"><%= post.comments.count %> comments</a></span>
+          <span class="badge pull-right"><a class="comments-link" href="posts/<%= post.id %>#comments"><%= post.comments.count %> reviews</a></span>
           <a class="panel-title" href="posts/<%= post.id %>"><h4 style="margin:0"><%= post.title %></h4></a>
         </div>
         <div class="white-panel">
-          <%= post.whitetext %>
+          <%= post.location %>
         </div>
         <div class="black-panel" style="display:none; color: #fff;">
-          <%= post.blacktext %>
+          <%= post.adtext %>
         </div>
       </div><!--/.panel-->
     </div><!--col-11-->

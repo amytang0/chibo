@@ -12,17 +12,20 @@
   <% end %>
   <p>
   <%= f.label :title %><br>
-  <%= f.text_field :title, :placeholder => "title" %>
+  <%= f.text_field :title, :placeholder => "Title of Ad" %>
   </p>
 
   <p>
-  <%= f.label :whitetext %><br>
-  <%= f.text_area :whitetext, :placeholder => "your good side" %>
+  <%= f.label :location %><br>
+  <%= f.text_field :location, :placeholder => "Name of Business" %>
   </p>
 
+
   <p>
-  <%= f.label :blacktext %><br>
-  <%= f.text_area :blacktext, :placeholder => "your bad side" %>
+  <%= f.label :adtext %><br>
+  <%= f.text_area :adtext, :placeholder => "Put your advertisement here" %>
   </p>
+
+
   <%= f.submit %>
 <% end %>

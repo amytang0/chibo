@@ -26,8 +26,8 @@ ActiveRecord::Schema.define(version: 20130910201844) do
 
   create_table "posts", force: true do |t|
     t.string   "title"
-    t.text     "whitetext"
-    t.text     "blacktext"
+    t.string   "location"
+    t.text     "adtext"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"

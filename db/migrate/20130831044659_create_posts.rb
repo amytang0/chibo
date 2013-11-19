@@ -2,8 +2,8 @@ class CreatePosts < ActiveRecord::Migration
   def change
     create_table :posts do |t|
       t.string :title
-      t.text :whitetext
-      t.text :blacktext
+      t.string :location
+      t.text :adtext
       t.integer :user_id
 
       t.timestamps
