@@ -118,7 +118,6 @@ class PostsController < ApplicationController
 #      render :nothing => true
     if URI(request.referer).path == '/posts/search' || URI(request.referer).path == '/'
 #  redirect_to :action => "index"
-    puts "HOT HERE"
 
     redirect_to posts_path
     else
