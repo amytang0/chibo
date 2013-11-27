@@ -16,7 +16,7 @@ function xinspect(o,i){
   $(document).on( 'input', '.budget_field',
     function() {
       var value = $(this).val();
-    var theid = $(this).attr('theid');
+    var theid = $('.dynamic_cost_box').attr('theid');
       console.log("budget form submitted "+ value);
 
       $.ajax({
@@ -41,7 +41,7 @@ function xinspect(o,i){
     function() {
 
       var value = $(this).val();
-      var theid = $(this).attr('theid');
+    var theid = $('.dynamic_cost_box').attr('theid');
       console.log("people form submitted "+value);
 
 

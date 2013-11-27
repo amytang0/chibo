@@ -108,9 +108,7 @@ class PostsController < ApplicationController
     end
 #puts "Back?", request.referer
 
-    @post = Post.find(params[:id])
 
-    render partial: 'cost_stuff', locals: {post: @post}
 #    render partial: 'cost_table', locals: {post: @post}
 #  render 'show'
 #  render @post
@@ -118,11 +116,15 @@ class PostsController < ApplicationController
 #  render 'show'
 
 #      render :nothing => true
-#    if URI(request.referer).path == '/posts/search'
-#      redirect_to :action => "index"
-#    else
-#      redirect_to :back
-#    end
+    if URI(request.referer).path == '/posts/search' || URI(request.referer).path == '/'
+#  redirect_to :action => "index"
+    puts "HOT HERE"
+
+    redirect_to posts_path
+    else
+    @post = Post.find(params[:id])
+    render partial: 'cost_stuff', locals: {post: @post}
+    end
   end
 
   def search

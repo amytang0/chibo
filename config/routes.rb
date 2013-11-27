@@ -1,7 +1,7 @@
 Twofaced::Application.routes.draw do
   devise_for :users
-root :to => 'posts#index'
-#root :to => 'posts#search'
+#root :to => 'posts#index'
+root :to => 'posts#search'
 
 #  post 'posts/update_all', to:'posts#update_all'
   resources :posts do

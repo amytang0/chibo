@@ -1,4 +1,4 @@
-<%= form_for :posts, :remote => true, :html => {:'data-type' => 'html', :id =>"people_form"}, :url => {:action => 'update_all'} do |f| %>
+<%= form_for :posts,  :html => {:'data-type' => 'html', :id =>"people_form"}, :url => {:action => 'update_all'} do |f| %>
 <div class="input-group">
 <%= number_field(:post, :numberofpeople, :class => "people_field", :placeholder => 'e.g. 40') %>
 <span class="input-group-addon">people</span>

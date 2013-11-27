@@ -1,4 +1,4 @@
-<div class="dynamic_cost_box">
+<div class="dynamic_cost_box" theid = <%= @post.id %> >
   <h4>Cost Table:</h4><%= render partial: 'cost_table', :locals => {:post =>@post} %>
   <h4>Total Cost:</h4><%= render partial: 'cost_calculator', :locals => {:post => @post} %>
 </div>
