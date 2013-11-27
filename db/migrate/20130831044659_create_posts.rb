@@ -5,7 +5,7 @@ class CreatePosts < ActiveRecord::Migration
       t.string :location
       t.text :adtext
       t.integer :numberofpeople, :default => 0
-      t.decimal :budge, :default => 0.0
+      t.decimal :budget, :default => 0.0
       t.decimal :costOfFifteen, :default => 0.00
       t.decimal :costOfThirty, :default => 0.00
       t.decimal :costOfFifty, :default => 0.00
