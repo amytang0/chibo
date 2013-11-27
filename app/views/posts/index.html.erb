@@ -11,7 +11,7 @@
       <%= render 'front_panel' %>
 
 
-  <%= paginate @posts %>
+   <% if !( @posts.nil?) %><%= paginate @posts %> <% end %>
 
     </div><!--/.col-12-->
 
