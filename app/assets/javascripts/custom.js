@@ -31,6 +31,7 @@ function xinspect(o,i){
       },
       error: function(request, status, error) {
       console.log("failed update all budget"+request+"\n"+status+"\n"+error);
+      $('.budget_form').submit();
       }
       });
       });
@@ -56,6 +57,7 @@ function xinspect(o,i){
       },
       error: function(request, status, error) {
       console.log("failed update all people"+request+"\n"+status+"\n"+error);
+      $('.people_form').submit();
       }
       });
       });
