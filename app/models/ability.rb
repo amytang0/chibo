@@ -9,18 +9,22 @@ class Ability
     Rails.logger.info "debug:: "+ user.inspect
     if user.nil?
       can :read, :all
+      can :search, Post
+      can :manage, :all
     elsif user.role == "admin"
       can :manage, :all
     elsif user.role == "banned"
       can :read, :all
     elsif user.role == "default"
       can :read, :all
+      can :search, Post
       can :vote_up, :all
       can :vote_down, :all
       can :manage, Post, :user_id => user.id
       can :manage, Comment, :user_id => user.id
     else
       can :read, :all
+      can :manage, :all
 #      can :create, [Post, Comment]
 #      can :vote_up, [Post, Comment]
 #      can :vote_down, [Post, Comment]
