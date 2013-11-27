@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_filter :authenticate_user!, :except => [:show, :index]
+  before_filter :authenticate_user!, :except => [:show, :index, :search]
   skip_before_filter :verify_authenticity_token, :only => [:vote_up, :vote_down]
   load_and_authorize_resource :except => :create
 
@@ -13,7 +13,7 @@ class PostsController < ApplicationController
   end
 
   def index
-    Rails.logger.info("debug: " + current_user.inspect)
+#Rails.logger.info("debug: " + current_user.inspect)
     # add the search thing
     @search = Post.search(params[:q])
     @post = @search.result[0]
@@ -83,7 +83,7 @@ class PostsController < ApplicationController
       current_user.vote_exclusively_against(@post = Post.find(params[:id]))
       render partial: 'votecount', locals: {post: @post} 
     rescue ActiveRecord::RecordInvalid
-      oender :nothing => true, :status => 404
+      render :nothing => true, :status => 404
     end
   end
 
@@ -106,12 +106,23 @@ class PostsController < ApplicationController
         post.save
         end
     end
-    puts "Back?", request.referer
-    if URI(request.referer).path == '/posts/search'
-      redirect_to :action => "index"
-    else
-      redirect_to :back
-    end
+#puts "Back?", request.referer
+
+    @post = Post.find(params[:id])
+
+    render partial: 'cost_stuff', locals: {post: @post}
+#    render partial: 'cost_table', locals: {post: @post}
+#  render 'show'
+#  render @post
+#  redirect_to :back
+#  render 'show'
+
+#      render :nothing => true
+#    if URI(request.referer).path == '/posts/search'
+#      redirect_to :action => "index"
+#    else
+#      redirect_to :back
+#    end
   end
 
   def search

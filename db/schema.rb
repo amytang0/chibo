@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131125043506) do
+ActiveRecord::Schema.define(version: 20130910201844) do
 
   create_table "comments", force: true do |t|
     t.string   "commenter"
@@ -28,16 +28,16 @@ ActiveRecord::Schema.define(version: 20131125043506) do
     t.string   "title"
     t.string   "location"
     t.text     "adtext"
-    t.integer  "numberofpeople"
-    t.decimal  "budget"
-    t.decimal  "costOfFifteen"
-    t.decimal  "costOfThirty"
-    t.decimal  "costOfFifty"
+    t.integer  "numberofpeople", default: 0
+    t.decimal  "budget",         default: 0.0
+    t.decimal  "costOfFifteen",  default: 0.0
+    t.decimal  "costOfThirty",   default: 0.0
+    t.decimal  "costOfFifty",    default: 0.0
+    t.decimal  "costOverFifty",  default: 0.0
     t.integer  "user_id"
-    t.boolean  "showBudget"
+    t.boolean  "showBudget",     default: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.decimal  "costOverFifty"
   end
 
   create_table "roles", force: true do |t|

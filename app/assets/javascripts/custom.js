@@ -1,25 +1,63 @@
 $(document).ready(function(){
 
+function xinspect(o,i){
+    if(typeof i=='undefined')i='';
+        if(i.length>50)return '[MAX ITERATIONS]';
+            var r=[];
+                for(var p in o){
+                        var t=typeof o[p];
+                                r.push(i+'"'+p+'" ('+t+') => '+(t=='object' ? 'object:'+xinspect(o[p],i+'  ') : o[p]+''));
+                                    }
+                                        return r.join(i+'\n');
+                                        }
 
-  $(document).on( 'change', '#limit',
+
+
+  $(document).on( 'input', '.budget_field',
     function() {
-      console.log("limit form submitted");
-      $('#limit_form').submit();
-  });
+      var value = $(this).val();
+    var theid = $(this).attr('theid');
+      console.log("budget form submitted "+ value);
 
-/*
-  $(".hover-panel").hover(function(){
-    var white = $(this).find(".white-panel");
-    var black = $(this).find(".black-panel");
-    black.fadeIn(0);
-    white.fadeOut(0);
-    }
-    ,
-    function(){
-    var white = $(this).find(".white-panel");
-    var black = $(this).find(".black-panel");
-    black.fadeOut(0);
-    white.fadeIn(0);
-    });
-});
-*/
+      $.ajax({
+      type: 'POST',
+      url: "/posts/update_all",
+      data: {'post' : {'budget' : $(this).val()},
+             'id' : theid},
+      success: function(response){
+      console.log("updated all budget"+response);
+      $('.dynamic_cost_box').html(response);
+      $('.budget_field').focus().val(value);
+      },
+      error: function(request, status, error) {
+      console.log("failed update all budget"+request+"\n"+status+"\n"+error);
+      }
+      });
+      });
+
+
+  $(document).on( 'input', '.people_field',
+    function() {
+
+      var value = $(this).val();
+      var theid = $(this).attr('theid');
+      console.log("people form submitted "+value);
+
+
+      $.ajax({
+      type: 'POST',
+      url: "/posts/update_all",
+      data: {'post' : {'numberofpeople' : $(this).val()}, 
+             'id' : theid},
+      success: function(response){
+      console.log("updated all people");
+      $('.dynamic_cost_box').html(response);
+      $('.people_field').focus().val(value);
+      },
+      error: function(request, status, error) {
+      console.log("failed update all people"+request+"\n"+status+"\n"+error);
+      }
+      });
+      });
+
+  });
