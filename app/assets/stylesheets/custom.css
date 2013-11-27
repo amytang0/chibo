@@ -33,11 +33,9 @@
 }
 
  .btn-default {
-height:36px;
   line-height:14px;
 }
 .vote-buttons .vote-count {
-  height: auto;
   padding: 0;
 }
 
