@@ -1,0 +1,47 @@
+<script>
+$(document).ready(function(){
+$('.datepicker').datepicker()
+});</script>
+<div class="loading">
+<br>
+<div class="panel">
+  <div class="panel-heading">
+  <h1 style="margin:0">Order</h1>
+  </div>
+  <div class="panel-body">
+    <h4>You are buying food for</h4>
+    <h3>
+    <b><%= @post.numberofpeople %> people</b>
+    for
+    <b><%= number_to_currency(@post.budget) %></b>
+    from
+    <b><%= @post.title %></b>
+    </h3>
+  </div>
+  
+  <h3>Delivering to:</h3>
+  <div class="well" style="display:block">
+    <b>Saved address:</b> 
+    <button type="button" class="btn btn-tiny" style="color:#fff;line-height:4px">edit</button>
+    <br>
+    1 Infinity Loop
+    <br>
+    Office #41
+    <br>
+    Cupertino, CA 95070
+    <br>
+  </div>
+
+
+  <h3>Delivery Date:</h3> 
+  <div class="well">
+    <input class="form-control" placeholder="time of delivery" value="11:30 am"> 
+    <div class="input-append date">
+        <input class="form-control datepicker" placeholder="MM-DD-YYYY" value="12-02-2012">
+     </div>
+   </div>
+<br>
+<button type="button" class="btn btn-default">Proceed to Paypal</button>
+</div>
+
+</div>
