@@ -1,7 +1,7 @@
 <div class="panel">
   <%= comment.body %>
   <div class="btn-group">
-    <% if can? :destroy, comment %>
+    <% if false and can? :destroy, comment %>
       <button type="button" class="btn btn-small">
         <%= link_to "delete", post_comment_path(comment.post_id, comment.id), :method => :delete, data: {confirm: 'Are you sure?'} %>
       </button>

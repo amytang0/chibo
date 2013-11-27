@@ -1,20 +1,32 @@
 Twofaced::Application.routes.draw do
   devise_for :users
-  root :to => 'posts#index', :time => 'day'
+root :to => 'posts#index', :time => 'day'
+#root :to => 'posts#search'
 
+#  post 'posts/update_all', to:'posts#update_all'
   resources :posts do
     member do
       post :vote_up
       post :vote_down
+      get :order
+#      get 'search'
+#      post 'calculate_budget_from_people'
+#      post 'calculate_people_from_budget'
+    end
+    collection do
+      post :update_all
+      get :search
     end
     resources:comments
   end
   resources :users
+
 # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
+  # resources :pages, :only => :show
   # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+#   root 'pages#show'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

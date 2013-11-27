@@ -4,7 +4,13 @@ class CreatePosts < ActiveRecord::Migration
       t.string :title
       t.string :location
       t.text :adtext
+      t.integer :numberofpeople
+      t.decimal :budget
+      t.decimal :costOfFifteen
+      t.decimal :costOfThirty
+      t.decimal :costOfFifty
       t.integer :user_id
+      t.boolean :showBudget
 
       t.timestamps
     end

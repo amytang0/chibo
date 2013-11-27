@@ -12,12 +12,12 @@
   <% end %>
   <p>
   <%= f.label :title %><br>
-  <%= f.text_field :title, :placeholder => "Title of Ad" %>
+  <%= f.text_field :title, :placeholder => "Name of Business" %>
   </p>
 
   <p>
   <%= f.label :location %><br>
-  <%= f.text_field :location, :placeholder => "Name of Business" %>
+  <%= f.text_field :location, :placeholder => "Address of Business" %>
   </p>
 
 
@@ -25,6 +25,28 @@
   <%= f.label :adtext %><br>
   <%= f.text_area :adtext, :placeholder => "Put your advertisement here" %>
   </p>
+
+  <p>
+  <b>Price per person of 0-15 people</b><br>
+  <%= f.number_field :costOfFifteen, :placeholder => "e.g. 15.00", :class => 'text_field', :step => 0.01 %>
+  </p>
+
+
+  <p>
+  <b>Price per person of 16-30 people</b><br>
+  <%= f.number_field :costOfThirty, :placeholder => "e.g. 13.75", :class => 'text_field', :step => 0.01 %>
+  </p>
+
+  <p>
+  <b>Price per person of 31-50 people</b><br>
+  <%= f.number_field :costOfFifty, :placeholder => "e.g. 11.25", :class => 'text_field', :step => 0.01 %>
+  </p>
+  <p>
+
+  <b>Price per person of >50 people</b><br>
+  <%= f.number_field :costOverFifty, :placeholder => "e.g. 10.25", :class => 'text_field', :step => 0.01 %>
+  </p>
+
 
 
   <%= f.submit %>

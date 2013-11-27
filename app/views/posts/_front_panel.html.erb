@@ -11,11 +11,13 @@
           <span class="badge pull-right"><a class="comments-link" href="posts/<%= post.id %>#comments"><%= post.comments.count %> reviews</a></span>
           <a class="panel-title" href="posts/<%= post.id %>"><h4 style="margin:0"><%= post.title %></h4></a>
         </div>
+
         <div class="white-panel">
-          <%= post.location %>
-        </div>
-        <div class="black-panel" style="display:none; color: #fff;">
-          <%= post.adtext %>
+          <% if post.showBudget %>
+          <h5 style="margin:0"><b>Budget: </b><%= number_to_currency(post.budget) %></h5>
+          <% else %>
+          <h5 style="margin:0"><b><%= post.numberofpeople %></b> people</h5>
+          <% end %>
         </div>
       </div><!--/.panel-->
     </div><!--col-11-->

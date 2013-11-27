@@ -7,7 +7,7 @@ $(document).ready(function(){
       $('#limit_form').submit();
   });
 
-
+/*
   $(".hover-panel").hover(function(){
     var white = $(this).find(".white-panel");
     var black = $(this).find(".black-panel");
@@ -22,3 +22,4 @@ $(document).ready(function(){
     white.fadeIn(0);
     });
 });
+*/

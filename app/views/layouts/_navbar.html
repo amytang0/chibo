@@ -1,5 +1,5 @@
 <!--Navbar================================================== -->
-<div class="navbar navbar-fixed-top navbar-inverse">
+<div class="navbar navbar-default navbar-fixed-top navbar-inverse">
   <div class="navbar-inner">
     <div class="container">
       <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".nav-collapse">
@@ -7,11 +7,12 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="/posts">NomNomNom</a>
-      <div class="nav-collapse">
+      <a class="navbar-brand" href="/posts">chibo</a>
+      <div class="nav-collapse collapse">
       <ul class="nav navbar-nav">
         <li><a href="/posts/new">submit post</a></li>
         <li><%= link_to "recent", posts_path(:time => "recent") %></li>  
+        <li><a href="/posts/search">search</a></li>
         <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">  
             best of <span class="caret"></span>

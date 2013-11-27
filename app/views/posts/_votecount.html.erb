@@ -1,1 +1,1 @@
-<%= post.plusminus %>
+<%= number_to_percentage(100*(1.00* post.votes_for) / (1.00*post.votes_for + post.votes_against), precision:0) %>

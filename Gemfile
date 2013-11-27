@@ -56,5 +56,8 @@ gem 'thumbs_up'
 # Use Kaminari for pagination
 gem 'kaminari'
 
+# Use ransack for search filtering
+gem 'ransack'
+
 # Use debugger
 # gem 'debugger', group: [:development, :test]

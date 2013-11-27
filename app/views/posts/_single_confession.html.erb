@@ -1,23 +1,24 @@
 <div class="single-confession">
 <div class="panel">
+    <div class="panel-heading">
+    <div style="display:inline">
+      <h1 style="display:inline-block;margin:0"><%= @post.title %></h1>
+      <div class="btn-group pull-right" style="display:inline;">
+        <%= render partial: 'vote_buttons', :locals => {:post => @post} %>
+      </div><!--/.btn-group-->
+      </div>
+
+    </div>
     <div class="white-panel">
-      Location: <%= @post.location %>
+      <h4>Location: </h4><%= @post.location %><br>
+      <h4>Phone Number: </h4><%= @post.adtext %>
+      <h4>Cost Table:</h4><%= render partial: 'cost_table', :locals => {:post =>@post} %>
+      <h4>Total Cost:</h4><%= render partial: 'cost_calculator', :locals => {:post => @post} %>
+      <br>
+      <button type="button" class="btn btn-info" style="width:100%">
+<h4>        <%= link_to "Place Order", order_post_path(@post) %> </h4>
+      </button>
     </div>
   </div><!--/.panel-->
-  <div class="panel white-panel"> 
-      More Info: <%= @post.adtext %>
-  </div><!--/.black-panel-->
-  <div class="btn-group" >
-  <%= render partial: 'vote_buttons', :locals => {:post => @post} %>
-  <% if can? :edit, @post %>
-      <button type="button" class="btn btn-default">
-        <%= link_to "edit", edit_post_path(@post) %>
-      </button>
-    <% end %>
-    <% if can? :destroy, @post %>
-      <button type="button" class="btn btn-default">
-      <%= link_to "delete", post_path(@post), :method => :delete,
-      data: { confirm: 'Are you sure?' } %></button>
-    <% end %>
-  </div><!--/.btn-group-->
+  <br>
 </div><!--/.single-confession-->

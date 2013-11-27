@@ -13,34 +13,16 @@ class PostsController < ApplicationController
   end
 
   def index
-  Rails.logger.info("debug: " + current_user.inspect)
-#    @posts = Post.all
-# add the whole month/day/alltime thing
-    if params[:time]
-      Rails.logger.info("time variable exists")
-      case params[:time]
-      when "today"
-        @posts = Kaminari.paginate_array(Post.one_day_ago.sort_by{ |post| post.plusminus}.reverse).page(params[:page]).per(10)
-        Rails.logger.info("day set");
-      when "weekly"
-       Rails.logger.info("week set");
-       @posts = Kaminari.paginate_array(Post.one_week_ago.sort_by{ |post| post.plusminus}.reverse).page(params[:page]).per(10)
-      when "monthly"
-        Rails.logger.info("month set");
-        @posts = Kaminari.paginate_array(Post.one_month_ago.sort_by{ |post| post.plusminus}.reverse).page(params[:page]).per(10)
-      when "all-time"
-        Rails.logger.info("all time set");
-        @posts = Post.plusminus_tally.page(params[:page]).per(10)
-      when "recent"
-       @posts = Kaminari.paginate_array(Post.all.reverse).page(params[:page]).per(10)    
-      else
-        @posts = Kaminari.paginate_array(Post.all.sort_by{ |post| post.created_at}.reverse).page(params[:page]).per(10)
-    Rails.logger.info("No time set")
-      end 
-   else
-    @posts = Kaminari.paginate_array(Post.all.reverse).page(params[:page]).per(10)
-#     @posts = Post.plusminus_tally.page(params[:page]).per(10)
+    Rails.logger.info("debug: " + current_user.inspect)
+    # add the search thing
+    @search = Post.search(params[:q])
+    @post = @search.result[0]
+    if !@post.showBudget 
+      @search.sorts = ['numberofpeople desc', 'created_at desc'] if @search.sorts.empty?
+    else
+      @search.sorts = ['budget asc', 'created_at desc'] if @search.sorts.empty?
     end
+  @posts = Kaminari.paginate_array(@search.result).page(params[:page]).per(10)
   end
 
   def destroy
@@ -53,7 +35,8 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new(params[:post].permit(:title, :location, :adtext ))
+#@post = Post.new(params[:post].permit(:title, :location, :adtext, :costForFifteen, :costForThirty, :costForFifty ))
+  @post = Post.new(post_params)
     @post.user = current_user
     if @post.save
       redirect_to @post
@@ -68,7 +51,7 @@ class PostsController < ApplicationController
 
   def update
     @post = Post.find(params[:id])
-    if @post.update(params[:post].permit(:title, :location, :adtext))
+    if @post.update(params[:post].permit(:title, :location, :adtext, :costForFifteen, :costForThirty, :costForFifty ))
       redirect_to @post
     else
       render 'edit'
@@ -97,15 +80,67 @@ class PostsController < ApplicationController
       current_user.vote_exclusively_against(@post = Post.find(params[:id]))
       render partial: 'votecount', locals: {post: @post} 
     rescue ActiveRecord::RecordInvalid
-      render :nothing => true, :status => 404
+      oender :nothing => true, :status => 404
     end
   end
 
+#This method gets either numberofpeople or budget
+  def update_all
+    @posts = Post.all
+    puts "PARAMS: ", params.inspect
+    if !params[:post][:numberofpeople].nil?
+      @posts.each do |post|
+        post.numberofpeople = params[:post][:numberofpeople]
+        post.budget = calculate_budget_from_people(post)
+        post.showBudget = true
+        post.save
+      end
+    else
+      @posts.each do |post|
+        post.budget = params[:post][:budget]
+        post.numberofpeople = calculate_people_from_budget(post)
+        post.showBudget = false
+        post.save
+        end
+    end
+    puts "Back?", request.referer
+    if URI(request.referer).path == '/posts/search'
+      redirect_to :action => "index"
+    else
+      redirect_to :back
+    end
+  end
 
+  def search
+     puts "hey"
+  end
+
+  def calculate_budget_from_people(post)
+    @post = post
+    if @post.numberofpeople <= 15
+      return @post.costOfFifteen * @post.numberofpeople
+    elif @post.numberofpeople <= 30
+      return @post.costOfThirty * @post.numberofpeople
+    else
+      return @post.costOfFifty * @post.numberofpeople
+    end
+  end
+
+  def calculate_people_from_budget(post)
+    people = (post.budget/post.costOfFifteen).floor
+    if people > 15
+      people = (post.budget/post.costOfThirty).floor
+    end
+    if people > 30
+      people = (post.budget/post.costOfFifty).floor
+    end
+    return people
+  end
 
   private
     def post_params
-      params.require(:post).permit(:title, :location, :adtext)
+#params.require(:post).permit(:title, :location, :adtext, :costForFifteen, :costForThirty, :costForFifty)
+    params.require(:post).permit!
     end
 
 end
