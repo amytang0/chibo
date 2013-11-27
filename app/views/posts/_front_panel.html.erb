@@ -5,8 +5,8 @@
     <%= render :partial => "vote_buttons", locals: {:post => post} %> 
       </div><!--/.btn-group-vertical-->
     </div><!--/.col-1-->
-    <div class="col-11">
-      <div class="panel front-page-panel hover-panel">
+    <div class="col-10 pull-right">
+      <div class="panel front-page-panel">
         <div class="panel-heading">
           <span class="badge pull-right"><a class="comments-link" href="posts/<%= post.id %>#comments"><%= post.comments.count %> reviews</a></span>
           <a class="panel-title" href="posts/<%= post.id %>"><h4 style="margin:0"><%= post.title %></h4></a>

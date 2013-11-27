@@ -2,7 +2,6 @@
 <html lang="en">
   <%= javascript_include_tag 'custom' %>
 
-  <div class="loading"> 
 
 <h3>
   <% if params[:time] != "recent" && !params[:time].nil? %>best posts: <% end %><%= params[:time] %>
@@ -10,11 +9,8 @@
       <div class="col-12 col-sm-12 col-lg-12">
       <%= render 'front_panel' %>
 
-
-
     </div><!--/.col-12-->
 
-  </div><!--/.loading-->
 
 </body>
 </html>

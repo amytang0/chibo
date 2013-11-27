@@ -11,6 +11,11 @@
   <%= render @post.comments %>
 <hr>
   <h3>add review</h3>
+      <div class="btn-group " style="display:inline-block;">
+              <%= render partial: 'vote_buttons', :locals => {:post => @post} %>
+                    </div><!--/.btn-group-->
+<br>                    <br>
+
   <%= render 'comments/add_comments' %> 
 
 </div><!--/.col-12-->

@@ -1,0 +1,19 @@
+<%= form_for @post, :url => {:controller => 'posts_controller', :action => 'calculate_people_from_budget'} do |f| %>
+  <% if @post.errors.any? %>
+    <div id="errorExplanation">
+    <h4 style="color: rgb(200,10,10)"><%= pluralize(@post.errors.count, "error") %> prohibited
+    this post from being saved:</h4>
+    <ul>
+      <% @post.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+    </div>
+  <% end %>
+  <p>
+  <%= f.label :budget %><br>
+  <%= f.number_field :budget, :placeholder => "e.g. $200.00", :class => 'text_field', :step => 0.01 %>
+  </p>
+
+<%= f.submit %>
+<% end%>

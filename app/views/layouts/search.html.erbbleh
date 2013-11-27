@@ -1,0 +1,13 @@
+<%= search_form_for @search do |f| %>
+  <div class="field">
+    <%= f.label :budget_lteq, "Budget" %>
+    <%= f.text_field :budget_lteq %>
+
+    OR 
+
+    <%= f.label :numberofpeople_geq "Number of People" %>
+    <%= f.text_field :numberofpeople_geq %>
+
+  </div>
+  <div class="actions"><%= f.submit "Search" %></div>
+<% end %>

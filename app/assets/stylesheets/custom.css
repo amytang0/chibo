@@ -28,11 +28,13 @@
 
 /* Vote buttons */
 .vote-buttons {
-  left: 0;
+  left: 7px;
   position: absolute;
 }
 
  .btn-default {
+height:36px;
+  line-height:14px;
 }
 .vote-buttons .vote-count {
   height: auto;
