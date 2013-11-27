@@ -1,7 +1,7 @@
 <table class="table table-striped" >
 <tr><th>People</th><th>Price per Person</th></tr>
-<tr class=<%= 'warning' if post.numberofpeople <= 15%>><td>0-15 people</td><td><%= number_to_currency(post.costOfFifteen) %></td></tr>
-<tr class=<%= 'warning' if post.numberofpeople > 15 && post.numberofpeople <= 30%>><td>16-30 people</td><td><%= number_to_currency(post.costOfThirty) %> </td></tr>
-<tr  class=<%= 'warning' if post.numberofpeople > 30 && post.numberofpeople <= 50%>><td>30-50 people</td><td><%= number_to_currency(post.costOfFifty) %></td></tr>
-<tr class=<%= 'warning' if post.numberofpeople >50%> ><td>>50 people</td><td><%= number_to_currency(post.costOverFifty) %></td></tr>
+<tr class=<%= 'warning' if @post.numberofpeople <= 15%>><td>0-15 people</td><td><%= number_to_currency(@post.costOfFifteen) %></td></tr>
+<tr class=<%= 'warning' if @post.numberofpeople > 15 && @post.numberofpeople <= 30%>><td>16-30 people</td><td><%= number_to_currency(@post.costOfThirty) %> </td></tr>
+<tr  class=<%= 'warning' if @post.numberofpeople > 30 && @post.numberofpeople <= 50%>><td>30-50 people</td><td><%= number_to_currency(@post.costOfFifty) %></td></tr>
+<tr class=<%= 'warning' if @post.numberofpeople >50%> ><td>>50 people</td><td><%= number_to_currency(@post.costOverFifty) %></td></tr>
 </table>
