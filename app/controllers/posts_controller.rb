@@ -10,7 +10,7 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
-    @posts = @Post.all
+    @posts = Kaminari.paginate_array(Post.all).page(params[:page]).per(10)
   end
 
   def index
