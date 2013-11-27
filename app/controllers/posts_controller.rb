@@ -17,6 +17,9 @@ class PostsController < ApplicationController
     # add the search thing
     @search = Post.search(params[:q])
     @post = @search.result[0]
+    if @post.nil?
+      return
+    end
     if !@post.showBudget 
       @search.sorts = ['numberofpeople desc', 'created_at desc'] if @search.sorts.empty?
     else
