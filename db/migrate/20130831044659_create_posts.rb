@@ -9,6 +9,7 @@ class CreatePosts < ActiveRecord::Migration
       t.decimal :costOfFifteen, :default => -1.0
       t.decimal :costOfThirty, :default => -1.0
       t.decimal :costOfFifty, :default => -1.0
+      t.decimal :costOverFifty, :default => -1.0
       t.integer :user_id
       t.boolean :showBudget, :default => false
 
