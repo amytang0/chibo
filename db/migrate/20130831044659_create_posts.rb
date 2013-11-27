@@ -6,10 +6,10 @@ class CreatePosts < ActiveRecord::Migration
       t.text :adtext
       t.integer :numberofpeople, :default => 0
       t.decimal :budge, :default => 0.0
-      t.decimal :costOfFifteen, :default => -1.0
-      t.decimal :costOfThirty, :default => -1.0
-      t.decimal :costOfFifty, :default => -1.0
-      t.decimal :costOverFifty, :default => -1.0
+      t.decimal :costOfFifteen, :default => 0.00
+      t.decimal :costOfThirty, :default => 0.00
+      t.decimal :costOfFifty, :default => 0.00
+      t.decimal :costOverFifty, :default => 0.00
       t.integer :user_id
       t.boolean :showBudget, :default => false
 
