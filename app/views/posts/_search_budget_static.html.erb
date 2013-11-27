@@ -1,6 +1,6 @@
 <%= form_for :posts, :html => {:'data-type' => 'html', :id =>"budget_form form-inline"}, :url => {:action => 'update_all'} do |f| %>
 <div class="input-group">
 <span class="input-group-addon" >$</span>
-<%= number_field(:post, :budget,:class =>"budget_field form-control", :step=>0.01, :placeholder => 'e.g. 200.00' ) %> 
+<%= number_field(:post, :budget,:class =>"form-control", :step=>0.01, :placeholder => 'e.g. 200.00' ) %> 
 </div>
 <% end %>
