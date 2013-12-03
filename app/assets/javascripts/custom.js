@@ -28,6 +28,7 @@ function xinspect(o,i){
       console.log("updated all budget"+response);
       $('.dynamic_cost_box').html(response);
       $('.budget_field').focus().val(value);
+      $('.budget_field').focus();
       },
       error: function(request, status, error) {
       console.log("failed update all budget"+request+"\n"+status+"\n"+error);
@@ -54,6 +55,7 @@ function xinspect(o,i){
       console.log("updated all people");
       $('.dynamic_cost_box').html(response);
       $('.people_field').focus().val(value);
+      $('.people_field').focus();
       },
       error: function(request, status, error) {
       console.log("failed update all people"+request+"\n"+status+"\n"+error);
